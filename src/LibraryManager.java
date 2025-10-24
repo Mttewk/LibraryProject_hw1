@@ -16,6 +16,17 @@ public class LibraryManager {
         }
     }
 
+    //  метод для проверки существования книги по ID
+    public boolean bookExists(String id) {
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void editBook(String id, String title, String author, int year, String genre) {
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getId().equals(id)) {

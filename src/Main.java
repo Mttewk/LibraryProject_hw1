@@ -44,6 +44,12 @@ public class Main {
                     // Редактировать книгу
                     System.out.print("Введите ID книги для редактирования: ");
                     String id = scanner.nextLine();
+
+                    if (!libraryManager.bookExists(id)) {
+                        System.out.println("Книга с ID " + id + " не найдена.");
+                        break; // Прерываем операцию редактирования
+                    }
+
                     System.out.print("Введите новое название книги: ");
                     String title = scanner.nextLine();
                     System.out.print("Введите нового автора книги: ");
