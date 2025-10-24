@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Задаем начальную емкость для библиотеки
-        LibraryManager libraryManager = new LibraryManager(10);  // Допустим, у нас пока 10 книг
+        LibraryManager libraryManager = new LibraryManager(10);
 
         while (true) {
             // Печать меню

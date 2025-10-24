@@ -10,6 +10,10 @@ public class Book {
     // Статический счетчик для автоматической генерации ID
     private static int idCounter = 1;
 
+    public static void setIdCounter(int newValue) {
+        idCounter = newValue;
+    }
+
     // Конструктор для создания книги
     public Book(String title, String author, int year, String genre) {
         this.title = title;
@@ -37,15 +41,13 @@ public class Book {
 
     // Метод для обновления счетчика при загрузке из файла
     private static void updateIdCounter(String id) {
-        if (id.startsWith("B")) {
-            try {
-                int num = Integer.parseInt(id.substring(1));
-                if (num >= idCounter) {
-                    idCounter = num + 1;
-                }
-            } catch (NumberFormatException e) {
-                // Если не удалось распарсить, оставляем текущий счетчик
+        try {
+            int num = Integer.parseInt(id);
+            if (num >= idCounter) {
+                idCounter = num + 1;
             }
+        } catch (NumberFormatException e) {
+            // Если не удалось распарсить, оставляем текущий счетчик
         }
     }
 

@@ -70,12 +70,13 @@ public class LibraryManager {
     public void saveToFile(String filename) {
         try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(filename))) {
             for (int i = 0; i < bookCount; i++) {
-                writer.write(books[i].getId() + "," + books[i].getTitle() + "," + books[i].getAuthor() + "," + books[i].getYear() + "," + books[i].getGenre());
+                // Сохраняем в том же формате: название, автор, год, жанр
+                writer.write(books[i].getTitle() + ", " + books[i].getAuthor() + ", " + books[i].getYear() + ", " + books[i].getGenre());
                 writer.newLine();
             }
-            System.out.println("Сохранено в файл: " + filename);
+            System.out.println("Сохранено в файл: " + filename + " (" + bookCount + " книг)");
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка при сохранении файла: " + e.getMessage());
         }
     }
 
@@ -83,21 +84,33 @@ public class LibraryManager {
     public void loadFromFile(String filename) {
         try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filename))) {
             String line;
+            int loadedCount = 0;
+
             while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data.length == 5) {
-                    String id = data[0];
-                    String title = data[1];
-                    String author = data[2];
-                    int year = Integer.parseInt(data[3]);
-                    String genre = data[4];
-                    Book book = new Book(title, author, year, genre, id);
-                    addBook(book); // Добавляем книгу в библиотеку
+                // Разделяем строку по запятой, но учитываем что в названиях книг тоже могут быть запятые
+                String[] data = line.split(",\\s*", 4); // Разделяем на 4 части максимум
+                if (data.length == 4) {
+                    try {
+                        String title = data[0].trim();
+                        String author = data[1].trim();
+                        int year = Integer.parseInt(data[2].trim());
+                        String genre = data[3].trim();
+
+                        // Создаем книгу - ID сгенерируется автоматически
+                        Book book = new Book(title, author, year, genre);
+                        addBook(book);
+                        loadedCount++;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Ошибка в формате года издания в строке: " + line);
+                    }
+                } else {
+                    System.out.println("Некорректный формат строки: " + line);
                 }
             }
-            System.out.println("Загружено книг из файла: " + filename);
+
+            System.out.println("Загружено книг из файла: " + filename + " (" + loadedCount + " книг)");
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка при загрузке файла: " + e.getMessage());
         }
     }
 }
