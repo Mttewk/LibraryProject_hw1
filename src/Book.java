@@ -5,13 +5,48 @@ public class Book {
     private String genre;  // Жанр книги
     private String id;     // Уникальный идентификатор книги
 
+
+
+    // Статический счетчик для автоматической генерации ID
+    private static int idCounter = 1;
+
     // Конструктор для создания книги
+    public Book(String title, String author, int year, String genre) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.id = generateId();
+    }
+
+    // Конструктор для загрузки из файла (с уже существующим ID)
     public Book(String title, String author, int year, String genre, String id) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.genre = genre;
         this.id = id;
+        // Обновляем счетчик, если загруженный ID больше текущего
+        updateIdCounter(id);
+    }
+
+    // Метод для автоматической генерации ID
+    private String generateId() {
+        return String.format("%04d", idCounter++);
+    }
+
+    // Метод для обновления счетчика при загрузке из файла
+    private static void updateIdCounter(String id) {
+        if (id.startsWith("B")) {
+            try {
+                int num = Integer.parseInt(id.substring(1));
+                if (num >= idCounter) {
+                    idCounter = num + 1;
+                }
+            } catch (NumberFormatException e) {
+                // Если не удалось распарсить, оставляем текущий счетчик
+            }
+        }
     }
 
     // Геттеры и сеттеры для всех полей

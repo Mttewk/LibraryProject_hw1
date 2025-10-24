@@ -25,8 +25,6 @@ public class Main {
             switch (choice) {
                 case 1: {
                     // Добавить книгу
-                    System.out.print("Введите ID книги: ");
-                    String id = scanner.nextLine();
                     System.out.print("Введите название книги: ");
                     String title = scanner.nextLine();
                     System.out.print("Введите автора книги: ");
@@ -37,8 +35,9 @@ public class Main {
                     System.out.print("Введите жанр книги: ");
                     String genre = scanner.nextLine();
 
-                    Book book = new Book(title, author, year, genre, id);
+                    Book book = new Book(title, author, year, genre);
                     libraryManager.addBook(book);
+                    System.out.println("Книге присвоен ID: " + book.getId());
                     break;
                 }
                 case 2: {
