@@ -29,9 +29,22 @@ public class Main {
                     String title = scanner.nextLine();
                     System.out.print("Введите автора книги: ");
                     String author = scanner.nextLine();
-                    System.out.print("Введите год издания: ");
-                    int year = scanner.nextInt();
+
+                    // Обработка ввода года с проверкой
+                    int year = 0;
+                    boolean validYear = false;
+                    while (!validYear) {
+                        System.out.print("Введите год издания: ");
+                        try {
+                            year = scanner.nextInt();
+                            validYear = true;
+                        } catch (java.util.InputMismatchException e) {
+                            System.out.println("Ошибка! Год должен быть числом. Попробуйте снова.");
+                            scanner.nextLine(); // Очищаем буфер сканера
+                        }
+                    }
                     scanner.nextLine();  // Переход на новую строку
+
                     System.out.print("Введите жанр книги: ");
                     String genre = scanner.nextLine();
 
@@ -54,9 +67,22 @@ public class Main {
                     String title = scanner.nextLine();
                     System.out.print("Введите нового автора книги: ");
                     String author = scanner.nextLine();
-                    System.out.print("Введите новый год издания: ");
-                    int year = scanner.nextInt();
+
+                    // Обработка ввода года
+                    int year = 0;
+                    boolean validYear = false;
+                    while (!validYear) {
+                        System.out.print("Введите новый год издания: ");
+                        try {
+                            year = scanner.nextInt();
+                            validYear = true;
+                        } catch (java.util.InputMismatchException e) {
+                            System.out.println("Ошибка! Год должен быть числом. Попробуйте снова.");
+                            scanner.nextLine(); // Очищаем буфер сканера
+                        }
+                    }
                     scanner.nextLine();  // Переход на новую строку
+
                     System.out.print("Введите новый жанр книги: ");
                     String genre = scanner.nextLine();
 

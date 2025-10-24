@@ -87,8 +87,8 @@ public class LibraryManager {
             int loadedCount = 0;
 
             while ((line = reader.readLine()) != null) {
-                // Разделяем строку по запятой, но учитываем что в названиях книг тоже могут быть запятые
-                String[] data = line.split(",\\s*", 4); // Разделяем на 4 части максимум
+
+                String[] data = line.split(",\\s*", 4);
                 if (data.length == 4) {
                     try {
                         String title = data[0].trim();
