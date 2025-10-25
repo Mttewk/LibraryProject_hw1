@@ -1,14 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-
-    private static final int DEFAULT_CAPACITY = 10;
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Задаем начальную емкость для библиотеки
-        LibraryManager libraryManager = new LibraryManager(DEFAULT_CAPACITY);
+        // Создаем менеджер библиотеки БЕЗ ограничения емкости
+        LibraryManager libraryManager = new LibraryManager();
 
         while (true) {
             // Печать меню

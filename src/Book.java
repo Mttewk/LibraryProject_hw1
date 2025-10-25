@@ -5,8 +5,6 @@ public class Book {
     private String genre;  // Жанр книги
     private String id;     // Уникальный идентификатор книги
 
-
-
     // Статический счетчик для автоматической генерации ID
     private static int idCounter = 1;
 
@@ -52,7 +50,6 @@ public class Book {
     }
 
     // Геттеры и сеттеры для всех полей
-
     public String getTitle() {
         return title;
     }
