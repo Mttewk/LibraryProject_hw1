@@ -1,11 +1,10 @@
 public class Book {
-    private String title;  // Название книги
-    private String author; // Автор книги
-    private int year;      // Год издания
-    private String genre;  // Жанр книги
-    private String id;     // Уникальный идентификатор книги
+    private String title;
+    private String author;
+    private int year;
+    private String genre;
+    private String id;
 
-    // Статический счетчик для автоматической генерации ID
     private static int idCounter = 1;
 
     public static void setIdCounter(int newValue) {
@@ -21,14 +20,14 @@ public class Book {
         this.id = generateId();
     }
 
-    // Конструктор для загрузки из файла (с уже существующим ID)
+    // Конструктор для загрузки из файла
     public Book(String title, String author, int year, String genre, String id) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.genre = genre;
         this.id = id;
-        // Обновляем счетчик, если загруженный ID больше текущего
+
         updateIdCounter(id);
     }
 
@@ -45,11 +44,9 @@ public class Book {
                 idCounter = num + 1;
             }
         } catch (NumberFormatException e) {
-            // Если не удалось распарсить, оставляем текущий счетчик
         }
     }
 
-    // Геттеры и сеттеры для всех полей
     public String getTitle() {
         return title;
     }

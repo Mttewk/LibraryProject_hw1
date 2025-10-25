@@ -102,7 +102,9 @@ public class LibraryManager {
             }
 
             System.out.println("Загружено книг из файла: " + filename + " (" + loadedCount + " книг)");
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("Ошибка: Файл '" + filename + "' не найден.");
+        }catch (IOException e) {
             System.out.println("Ошибка при загрузке файла: " + e.getMessage());
         }
     }

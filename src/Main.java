@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Создаем менеджер библиотеки БЕЗ ограничения емкости
         LibraryManager libraryManager = new LibraryManager();
 
         while (true) {
@@ -20,17 +19,16 @@ public class Main {
             System.out.print("Выберите опцию: ");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Переход на новую строку после ввода числа
+            scanner.nextLine();
 
             switch (choice) {
                 case 1: {
-                    // Добавить книгу
+                    // Добавление книги
                     System.out.print("Введите название книги: ");
                     String title = scanner.nextLine();
                     System.out.print("Введите автора книги: ");
                     String author = scanner.nextLine();
 
-                    // Обработка ввода года с проверкой
                     int year = 0;
                     boolean validYear = false;
                     while (!validYear) {
@@ -40,10 +38,10 @@ public class Main {
                             validYear = true;
                         } catch (java.util.InputMismatchException e) {
                             System.out.println("Ошибка! Год должен быть числом. Попробуйте снова.");
-                            scanner.nextLine(); // Очищаем буфер сканера
+                            scanner.nextLine();
                         }
                     }
-                    scanner.nextLine();  // Переход на новую строку
+                    scanner.nextLine();
 
                     System.out.print("Введите жанр книги: ");
                     String genre = scanner.nextLine();
@@ -54,13 +52,13 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    // Редактировать книгу
+                    // Редактирование книги
                     System.out.print("Введите ID книги для редактирования: ");
                     String id = scanner.nextLine();
 
                     if (!libraryManager.bookExists(id)) {
                         System.out.println("Книга с ID " + id + " не найдена.");
-                        break; // Прерываем операцию редактирования
+                        break;
                     }
 
                     System.out.print("Введите новое название книги: ");
@@ -68,7 +66,6 @@ public class Main {
                     System.out.print("Введите нового автора книги: ");
                     String author = scanner.nextLine();
 
-                    // Обработка ввода года
                     int year = 0;
                     boolean validYear = false;
                     while (!validYear) {
@@ -78,10 +75,10 @@ public class Main {
                             validYear = true;
                         } catch (java.util.InputMismatchException e) {
                             System.out.println("Ошибка! Год должен быть числом. Попробуйте снова.");
-                            scanner.nextLine(); // Очищаем буфер сканера
+                            scanner.nextLine();
                         }
                     }
-                    scanner.nextLine();  // Переход на новую строку
+                    scanner.nextLine();
 
                     System.out.print("Введите новый жанр книги: ");
                     String genre = scanner.nextLine();
@@ -90,12 +87,12 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    // Вывести список всех книг
+                    // Вывод списка книг
                     libraryManager.printAllBooks();
                     break;
                 }
                 case 4: {
-                    // Найти книгу
+                    // Нахождение книги
                     System.out.print("Введите название книги для поиска: ");
                     String title = scanner.nextLine();
                     System.out.print("Введите автора книги для поиска: ");
@@ -107,14 +104,14 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    // Сохранить книги в файл
+                    // Сохранение книг в файл
                     System.out.print("Введите имя файла для сохранения: ");
                     String filename = scanner.nextLine();
                     libraryManager.saveToFile(filename);
                     break;
                 }
                 case 6: {
-                    // Загрузить книги из файла
+                    // Загрузка книг из файла
                     System.out.print("Введите имя файла для загрузки: ");
                     String filename = scanner.nextLine();
                     libraryManager.loadFromFile(filename);
